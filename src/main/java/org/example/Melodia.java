@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Melodia {
     private int id;
     private String nombre;
@@ -10,6 +12,10 @@ public class Melodia {
     private double precio;
     private String formato;
 
+
+    public Melodia() {
+    }
+
     public Melodia(String nombre, String compositor, int anio, String genero,
                    String cantante, double precio, String formato) {
         this.nombre = nombre;
@@ -19,28 +25,30 @@ public class Melodia {
         this.cantante = cantante;
         this.precio = precio;
         this.formato = formato;
-        this.id = this.hashCode();
     }
 
-
-    //Setters y getters y contructores
-    public int getId(){
+    // ===== Setters y getters =====
+    public int getId() {
         return id;
     }
 
-    public void setNombre(String nombre){
-        this.nombre = nombre;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNombre(){
+    public String getNombre() {
         return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCompositor() {
         return compositor;
     }
 
-    public void setCompositor(String compositor){
+    public void setCompositor(String compositor) {
         this.compositor = compositor;
     }
 
@@ -50,14 +58,6 @@ public class Melodia {
 
     public void setAnio(int anio) {
         this.anio = anio;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
     }
 
     public String getGenero() {
@@ -76,19 +76,36 @@ public class Melodia {
         this.cantante = cantante;
     }
 
-    public void setFormato(String formato) {
-        this.formato = formato;
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
     public String getFormato() {
         return formato;
     }
 
-    @Override
-    public boolean equals(Object obj){
-        Melodia mel = (Melodia)obj;
+    public void setFormato(String formato) {
+        this.formato = formato;
+    }
 
-        return nombre.equals(mel.getNombre()) && (anio == mel.getAnio());
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Melodia)) return false;
+        Melodia mel = (Melodia) obj;
+        return nombre.equalsIgnoreCase(mel.getNombre())
+                && cantante.equalsIgnoreCase(mel.getCantante())
+                && anio == mel.getAnio();
+    }
+
+    // hashCode debe usar los mismos datos que equals
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre.toLowerCase(), cantante.toLowerCase(), anio);
     }
 
     @Override
@@ -96,9 +113,4 @@ public class Melodia {
         return id + " | " + nombre + " | " + cantante + " | " + compositor + " | "
                 + anio + " | " + genero + " | $" + precio + " | " + formato;
     }
-
-
-
-
-
 }
