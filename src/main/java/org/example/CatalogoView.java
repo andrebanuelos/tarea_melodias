@@ -5,8 +5,7 @@ import java.util.Scanner;
 
 // Vista: se encarga de pedir datos al usuario y mostrar resultados.
 public class CatalogoView {
-    // Dos Scanner: uno para texto y otro para números,
-    // así el Enter que deja nextInt() no se "come" la siguiente cadena.
+
     private Scanner leerCadenas = new Scanner(System.in);
     private Scanner leerNumeros = new Scanner(System.in);
     private CatalogoMelodias catalogo;
@@ -65,7 +64,6 @@ public class CatalogoView {
         System.out.println("0. Salir");
     }
 
-    // ================= Acciones =================
 
     private void agregarMelodia() {
         Melodia m = pedirDatosMelodia();
@@ -102,7 +100,7 @@ public class CatalogoView {
         System.out.println("Melodía actualizada: " + catalogo.buscar(id));
     }
 
-    // ================= Consultas =================
+
 
     private void mostrarCantantes() {
         System.out.println("Tienen melodías de " + catalogo.contarCantantes() + " cantantes:");
@@ -139,7 +137,7 @@ public class CatalogoView {
         mostrarLista(lista);
     }
 
-    // ================= Ayudantes para leer y mostrar =================
+
 
     private Melodia pedirDatosMelodia() {
         String nombre = leerTexto("Nombre: ");
